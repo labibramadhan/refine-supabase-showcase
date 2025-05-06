@@ -84,6 +84,28 @@ Zustand is implemented in the following ways:
 - **Filter state persistence** - Used to persist filter selections across component re-renders
 - **UI state coordination** - Used for coordinating UI states that need to be shared across multiple components
 
+## Code Quality and Standards
+
+### ESLint Configuration
+
+This project uses ESLint for code quality enforcement with a comprehensive rule set that follows industry best practices:
+
+- TypeScript strict type checking
+- React hooks rules enforcement
+- Import sorting and organization
+- Unused variable and import detection
+- Consistent code formatting aligned with Prettier
+
+### Husky and Commit Standards
+
+Git hooks are managed via [Husky](https://typicode.github.io/husky/) to enforce quality checks before code is committed:
+
+- **Pre-commit hooks**: Run ESLint, TypeScript type checking, and Prettier formatting
+- **Commit message standards**: Enforces conventional commit format (feat, fix, docs, etc.)
+- **Pre-push validation**: Ensures all tests pass before code can be pushed
+
+This approach ensures consistent code quality across the codebase and streamlines collaboration between team members.
+
 ## Available Scripts
 
 ### Running the development server.
