@@ -1,4 +1,4 @@
-# react-demo-interview
+# Book Borrowing Application
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
@@ -7,13 +7,82 @@
 </div>
 <br/>
 
-This [Refine](https://github.com/refinedev/refine) project was generated with [create refine-app](https://github.com/refinedev/refine/tree/master/packages/create-refine-app).
+This [Refine](https://github.com/refinedev/refine) project was generated with [create refine-app](https://github.com/refinedev/refine/tree/master/packages/create-refine-app) and enhanced to create a book borrowing application that allows users to borrow books from the library.
 
-## Getting Started
+## Project Overview
 
-A React Framework for building internal tools, admin panels, dashboards & B2B apps with unmatched flexibility ✨
+This application manages book borrowing with the following features:
+- Book management (create, read, update, delete)
+- Member management (create, read, update, delete)
+- Borrowing transaction management
+- Access control integrated with Supabase authentication
 
-Refine's hooks and components simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including authentication, access control, routing, networking, state management, and i18n.
+## Project Structure
+
+The project follows a modular structure organized by feature domains:
+
+```
+src/
+├── components/         # Reusable UI components
+│   ├── base-pages/     # Base page layouts (create, edit, list, show)
+│   ├── error-page/     # Common error page component
+│   └── ...
+├── modules/            # Feature modules
+│   ├── book/           # Book module
+│   │   ├── components/ # UI components for books
+│   │   ├── container/  # Main logic containers for different views
+│   │   ├── hooks/      # Custom hooks for data fetching
+│   │   └── utils/      # Utility functions
+│   ├── borrowing/      # Borrowing module (similar structure)
+│   ├── genre/          # Genre module (similar structure)
+│   └── member/         # Member module (similar structure)
+├── models/             # Entity data models
+├── providers/          # Provider configurations (Auth, etc.)
+└── utils/
+    └── supabase/       # Supabase client utilities
+        ├── client.ts   # Anon client for browser use
+        └── server.ts   # Server-side client for secure operations
+```
+
+## React Query and Suspense Usage
+
+This project leverages React Query through Refine's data hooks for efficient data fetching and caching:
+
+- **React Query**: Implemented via Refine's hooks:
+  - `useOne` - For fetching single records
+  - `useMany` - For fetching multiple records by ID
+  - `useList` - For paginated data fetching
+  - `useTable` - For table data with sorting, filtering, and pagination
+  - `useForm` - For form data handling with validation
+
+- **Suspense**: Used for loading states throughout the application to provide a smoother user experience. The application implements:
+  - Fallback UI components during data loading
+  - Error boundaries to handle loading failures
+  - Base page components that handle loading states consistently
+
+## State Management
+
+- **Form State**: Managed through Refine's form hooks
+- **Server State**: Handled by React Query's caching layer
+
+### Zustand for State Management
+
+The application uses [Zustand](https://github.com/pmndrs/zustand) for managing complex application state. Zustand provides a lightweight, unopinionated approach to state management with these benefits:
+
+- **Minimal boilerplate** compared to other state management solutions
+- **Component-agnostic** - state can be accessed outside of React components
+- **Optimized performance** with automatic selective re-rendering
+
+Zustand is implemented in the following ways:
+
+- **Multi-step form state** - Used in the borrowing module to manage state across multiple form steps
+  ```typescript
+  // Example from src/modules/borrowing/stores/useBorrowingFormStore.ts
+  export const useBorrowingFormStore = create<BorrowingFormState>()(...);
+  ```
+
+- **Filter state persistence** - Used to persist filter selections across component re-renders
+- **UI state coordination** - Used for coordinating UI states that need to be shared across multiple components
 
 ## Available Scripts
 
@@ -37,8 +106,7 @@ Refine's hooks and components simplifies the development process and eliminates 
 
 ## Learn More
 
-To learn more about **Refine**, please check out the [Documentation](https://refine.dev/docs)
-
+- **Refine Framework** [Documentation](https://refine.dev/docs)
 - **Supabase Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
 - **Ant Design** [Docs](https://refine.dev/docs/ui-frameworks/antd/tutorial/)
 
