@@ -1,6 +1,6 @@
-import { type CookieOptions, createServerClient } from "@supabase/ssr";
-import { type NextRequest, NextResponse } from "next/server";
-import { SUPABASE_KEY, SUPABASE_URL } from "./constants";
+import { SUPABASE_SUPER_KEY, SUPABASE_URL } from '@config/env';
+import { type CookieOptions, createServerClient } from '@supabase/ssr';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({
@@ -9,7 +9,7 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  const supabase = createServerClient(SUPABASE_URL, SUPABASE_KEY, {
+  const supabase = createServerClient(SUPABASE_URL!, SUPABASE_SUPER_KEY!, {
     cookies: {
       get(name: string) {
         return request.cookies.get(name)?.value;
@@ -34,7 +34,7 @@ export async function updateSession(request: NextRequest) {
       remove(name: string, options: CookieOptions) {
         request.cookies.set({
           name,
-          value: "",
+          value: '',
           ...options,
         });
         response = NextResponse.next({
@@ -44,7 +44,7 @@ export async function updateSession(request: NextRequest) {
         });
         response.cookies.set({
           name,
-          value: "",
+          value: '',
           ...options,
         });
       },

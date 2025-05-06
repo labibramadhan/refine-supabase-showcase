@@ -1,16 +1,14 @@
-"use client";
+'use client';
 
-import type { AuthProvider } from "@refinedev/core";
-import { supabaseBrowserClient } from "@utils/supabase/client";
+import type { AuthProvider } from '@refinedev/core';
+import { supabaseBrowserClient } from '@utils/supabase/client';
 
 export const authProviderClient: AuthProvider = {
   login: async ({ email, password }) => {
-    const { data, error } = await supabaseBrowserClient.auth.signInWithPassword(
-      {
-        email,
-        password,
-      }
-    );
+    const { data, error } = await supabaseBrowserClient.auth.signInWithPassword({
+      email,
+      password,
+    });
 
     if (error) {
       return {
@@ -24,16 +22,17 @@ export const authProviderClient: AuthProvider = {
 
       return {
         success: true,
-        redirectTo: "/",
+        redirectTo: '/member/list',
       };
     }
 
     // for third-party login
     return {
       success: false,
+      redirectTo: '/member/list',
       error: {
-        name: "LoginError",
-        message: "Invalid username or password",
+        name: 'LoginError',
+        message: 'Invalid username or password',
       },
     };
   },
@@ -49,7 +48,7 @@ export const authProviderClient: AuthProvider = {
 
     return {
       success: true,
-      redirectTo: "/login",
+      redirectTo: '/login',
     };
   },
   register: async ({ email, password }) => {
@@ -69,7 +68,7 @@ export const authProviderClient: AuthProvider = {
       if (data) {
         return {
           success: true,
-          redirectTo: "/",
+          redirectTo: '/',
         };
       }
     } catch (error: any) {
@@ -82,8 +81,8 @@ export const authProviderClient: AuthProvider = {
     return {
       success: false,
       error: {
-        message: "Register failed",
-        name: "Invalid email or password",
+        message: 'Register failed',
+        name: 'Invalid email or password',
       },
     };
   },
@@ -94,7 +93,7 @@ export const authProviderClient: AuthProvider = {
     if (error) {
       return {
         authenticated: false,
-        redirectTo: "/login",
+        redirectTo: '/login',
         logout: true,
       };
     }
@@ -102,12 +101,13 @@ export const authProviderClient: AuthProvider = {
     if (user) {
       return {
         authenticated: true,
+        redirectTo: '/member/list',
       };
     }
 
     return {
       authenticated: false,
-      redirectTo: "/login",
+      redirectTo: '/login',
     };
   },
   getPermissions: async () => {
@@ -132,7 +132,7 @@ export const authProviderClient: AuthProvider = {
     return null;
   },
   onError: async (error) => {
-    if (error?.code === "PGRST301" || error?.code === 401) {
+    if (error?.code === 'PGRST301' || error?.code === 401) {
       return {
         logout: true,
       };

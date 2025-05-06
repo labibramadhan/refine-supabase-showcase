@@ -1,0 +1,26 @@
+- This project is using Refine.Dev framework (https://refine.dev) version 4.x
+- This project is a book borrowing application that allows users to borrow books from the library, the masterdata will be book, member, and the borrow transaction
+- This project uses Next.JS to operate supabase safely, the supabase hit will be in server side for security concern
+- This project uses supabase backend, the supabase clients are in src/utils/supabase/client.ts for the anon client and src/utils/supabase/server.ts for the server full client
+- This project uses antd v5 for ui framework
+- This project uses tailwindcss for short hand css, always prioritize to build styles by using tailwindcss styles first
+- This project uses translations, always render label by defining its translation label first then give the default fallback label
+- Always define components in best practices by separating ui to render components in individual files, like form component can have its own component file, so later this copmonent file can have its own test files that only testing its ui
+- While deciding to create a component, check if there's an already reusable component defined in src/components, otherwise if it doesn't exist and the component you are going to create is considered as global reusable component that might be used by another components, then just create a new reusable component in src/components
+- The requirements of this project may change often, so if you decide to make a bunch of separated components for a single page, always make it simpler don't too overengineered by creating only needed files
+- If you working on specific module, observe the src/models directory first for the entity structure and also double check its table structure by calling supabase MCP server to inspect the table
+- The module is structured as followed:
+    - container: contains the main logic of the module
+    - components: contains the ui components of the module
+    - hooks: calls api calls so later it can be easily refactored if this project is not going to use supabase anymore
+    - utils: utility functions
+- If you are working on specific page / feature that requires complex state, use zustand store instead to define the state and pass the store to the components when rendering
+- The naming convention are below:
+    - component / container: PascalCase
+    - hooks: camelCase
+    - utils and models: dash-case
+    - stores: camelCase (useBookFormStore)
+- Utilize refine features first, use useOne for getting one record, useMany for getting many records, useList for getting paging based data, useTable for getting data and render later onto Ant Design table, useForm for getting form data and render later onto Ant Design form, check full doc here: https://refine.dev/docs/ui-integrations/ant-design/introduction
+- If refine isn't sufficient then calling supabase client is the 2nd choice
+- Translation done handle by using useTranslation hook from @refinedev/core
+- If you decide to do something to modify tables / refactoring something, please confirm first before executing it
