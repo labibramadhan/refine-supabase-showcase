@@ -17,6 +17,26 @@ This application manages book borrowing with the following features:
 - Borrowing transaction management
 - Access control integrated with Supabase authentication
 
+## Architecture and Design Patterns
+
+### Container Pattern
+
+This project implements a robust container pattern that separates concerns and promotes maintainability:
+
+- **Containers**: Handle business logic, data fetching, and state management
+- **Components**: Focus purely on UI rendering with props passed from containers
+- **Hooks**: Encapsulate all data fetching and API calls
+- **Utils**: Provide shared utility functions
+
+This separation provides several key benefits:
+
+- **Backend Agnosticism**: All Supabase interactions are isolated in hooks, making it straightforward to replace with another service in the future
+- **Testability**: UI components can be tested in isolation from business logic
+- **Code Reusability**: Components can be shared across different contexts
+- **Maintenance**: Changes to data sources only require updates to hooks, not to UI components
+
+For example, if the application needs to move away from Supabase in the future, only the hooks layer would need significant changes while containers and UI components would remain largely untouched.
+
 ## Project Structure
 
 The project follows a modular structure organized by feature domains:
