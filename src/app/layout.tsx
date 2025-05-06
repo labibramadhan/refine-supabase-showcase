@@ -14,6 +14,7 @@ import { dataProvider } from '@providers/data-provider';
 import '@refinedev/antd/dist/reset.css';
 import '@/app/globals.css';
 import { resources } from '@config/resource';
+import { accessControlProvider } from '@providers/access-control-provider';
 
 export const metadata: Metadata = {
   title: 'Refine',
@@ -44,6 +45,7 @@ export default function RootLayout({
                     routerProvider={routerProvider}
                     authProvider={authProviderClient}
                     dataProvider={dataProvider}
+                    accessControlProvider={accessControlProvider}
                     resources={resources}
                     notificationProvider={useNotificationProvider}
                     options={{

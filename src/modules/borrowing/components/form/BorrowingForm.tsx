@@ -1,5 +1,5 @@
 import { Form, Input, DatePicker, Select, Row, Col } from 'antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import type { FormProps } from 'antd';
 import { useEffect } from 'react';
 import { useBookSelect } from '@modules/book/hooks/useBookSelect';
@@ -10,7 +10,7 @@ export type BorrowingFormProps = {
 };
 
 export default function BorrowingForm({ formProps }: BorrowingFormProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const { selectProps: bookSelectProps, query: bookQuery } = useBookSelect({});
 

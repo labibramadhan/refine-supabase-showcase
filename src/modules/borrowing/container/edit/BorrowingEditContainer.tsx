@@ -1,11 +1,11 @@
 import BorrowingForm from '@modules/borrowing/components/form/BorrowingForm';
-import { Edit } from '@refinedev/antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { useParams } from 'next/navigation';
 import { useBorrowingForm } from '@modules/borrowing/hooks/useBorrowingForm';
+import BaseEditPage from '@components/base-pages/edit/BaseEditPage';
 
 export default function BorrowingEditContainer() {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const params = useParams();
   const id = params?.id as string;
   const { form } = useBorrowingForm({
@@ -16,12 +16,12 @@ export default function BorrowingEditContainer() {
   });
 
   return (
-    <Edit
+    <BaseEditPage
       isLoading={form.formLoading}
       saveButtonProps={form.saveButtonProps}
       title={t('borrowing.titles.edit', 'Edit Borrowing')}
     >
       <BorrowingForm formProps={form.formProps} />
-    </Edit>
+    </BaseEditPage>
   );
 }

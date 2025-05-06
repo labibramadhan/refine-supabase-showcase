@@ -1,4 +1,4 @@
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { Table, TableProps, Space } from 'antd';
 import { Book } from '@models/book';
 import { EditButton, ShowButton, DeleteButton } from '@refinedev/antd';
@@ -8,7 +8,7 @@ interface BookListTableComponentProps {
 }
 
 export default function BookListTableComponent({ tableProps }: BookListTableComponentProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const columns: TableProps<Book>['columns'] = [
     {

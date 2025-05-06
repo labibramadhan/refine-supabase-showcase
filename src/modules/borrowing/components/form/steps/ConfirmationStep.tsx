@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation, useList } from '@refinedev/core';
+import { useTranslate, useList } from '@refinedev/core';
 import { Card, Descriptions, Button, Typography, Divider, Alert } from 'antd';
 import {
   CheckCircleOutlined,
@@ -18,7 +18,7 @@ export const ConfirmationStep: React.FC<{
   isLoading: boolean;
   onSubmit: () => void;
 }> = ({ isLoading, onSubmit }) => {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const { selectedBookId, memberId, borrowDate, returnDate, notes } = useBorrowingFormStore();
 
   const { data: bookData } = useList<Book>({

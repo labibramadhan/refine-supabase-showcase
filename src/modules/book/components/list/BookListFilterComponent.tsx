@@ -1,4 +1,4 @@
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { Form, Input, Select, Button, Card, Row, Col } from 'antd';
 import { SearchOutlined, UndoOutlined } from '@ant-design/icons';
 import { useGenreSelect } from '@modules/genre/hooks/useGenreSelect';
@@ -8,7 +8,7 @@ interface BookListFilterComponentProps {
 }
 
 export default function BookListFilterComponent({ formProps }: BookListFilterComponentProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const { selectProps: genreSelectProps } = useGenreSelect({});
 

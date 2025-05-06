@@ -1,11 +1,11 @@
-import { useTranslation } from '@refinedev/core';
-import { Edit } from '@refinedev/antd';
+import BaseEditPage from '@components/base-pages/edit/BaseEditPage';
 import { useGenreForm } from '@modules/genre/hooks/useGenreForm';
 import GenreForm from '@modules/genre/components/form/GenreForm';
 import { useParams } from 'next/navigation';
+import { useTranslate } from '@refinedev/core';
 
 export default function GenreEditContainer() {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const params = useParams();
   const id = params?.id as string;
 
@@ -14,12 +14,12 @@ export default function GenreEditContainer() {
   });
 
   return (
-    <Edit
+    <BaseEditPage
       saveButtonProps={form.saveButtonProps}
       title={t('genre.edit.title', 'Edit Genre')}
       resource="genres"
     >
       <GenreForm formProps={form.formProps} />
-    </Edit>
+    </BaseEditPage>
   );
 }

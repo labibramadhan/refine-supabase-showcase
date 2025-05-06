@@ -1,5 +1,5 @@
 import { Form, Input } from 'antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import type { FormProps } from 'antd';
 
 export type GenreFormProps = {
@@ -7,7 +7,7 @@ export type GenreFormProps = {
 };
 
 export default function GenreForm({ formProps }: GenreFormProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   return (
     <Form {...formProps} layout="vertical" className="space-y-4">

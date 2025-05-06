@@ -1,5 +1,5 @@
 import { Button, Card, Col, Form, FormProps, Input, Row } from 'antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { SearchOutlined, UndoOutlined } from '@ant-design/icons';
 
 export type MemberListFilterProps = {
@@ -13,7 +13,7 @@ export default function MemberListFilterComponent({
   isResetButtonDisabled,
   isSearchButtonDisabled,
 }: MemberListFilterProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   return (
     <Card className="mb-4">

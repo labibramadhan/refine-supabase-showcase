@@ -1,5 +1,5 @@
 import { Descriptions, Tag, Divider, Typography } from 'antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { formatDate } from '@utils/format';
 import { Member } from '@models/member';
 
@@ -10,7 +10,7 @@ interface MemberShowComponentProps {
 }
 
 export default function MemberShowComponent({ record }: MemberShowComponentProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const getStatusTag = (status?: string) => {
     if (!status) return null;
@@ -29,7 +29,7 @@ export default function MemberShowComponent({ record }: MemberShowComponentProps
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm">
+    <>
       <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-6">
         <div className="flex-grow">
           <Title level={3} className="m-0">
@@ -72,6 +72,6 @@ export default function MemberShowComponent({ record }: MemberShowComponentProps
             : t('common.notAvailable', 'N/A')}
         </Descriptions.Item>
       </Descriptions>
-    </div>
+    </>
   );
 }

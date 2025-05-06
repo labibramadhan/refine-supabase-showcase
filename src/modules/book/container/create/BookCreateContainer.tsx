@@ -1,18 +1,18 @@
 import BookForm from '@modules/book/components/form/BookForm';
 import { useBookForm } from '@modules/book/hooks/useBookForm';
-import { Create } from '@refinedev/antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
+import BaseCreatePage from '@components/base-pages/create/BaseCreatePage';
 
 export default function BookCreateContainer() {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const { form } = useBookForm({});
 
   return (
-    <Create
+    <BaseCreatePage
       saveButtonProps={form.saveButtonProps}
       title={t('book.titles.create', 'Create New Book')}
     >
       <BookForm formProps={form.formProps} />
-    </Create>
+    </BaseCreatePage>
   );
 }

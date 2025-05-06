@@ -1,12 +1,12 @@
 import { Form, Input, DatePicker, Select, Row, Col, FormProps } from 'antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 
 export type MemberFormProps = {
   formProps?: FormProps;
 };
 
 export default function MemberForm({ formProps }: MemberFormProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   return (
     <Form layout="vertical" {...formProps} className="w-full mx-auto">

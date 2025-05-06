@@ -1,12 +1,12 @@
 import { useBorrowingForm } from '@modules/borrowing/hooks/useBorrowingForm';
 import { useBorrowingFormStore } from '@modules/borrowing/stores/useBorrowingFormStore';
 import { MultiStepBorrowingForm } from '@modules/borrowing/components/form/MultiStepBorrowingForm';
-import { Create } from '@refinedev/antd';
-import { useTranslation, useNavigation } from '@refinedev/core';
+import { useTranslate, useNavigation } from '@refinedev/core';
 import { useEffect } from 'react';
+import BaseCreatePage from '@components/base-pages/create/BaseCreatePage';
 
 export default function BorrowingCreateContainer() {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const { push } = useNavigation();
   const resetForm = useBorrowingFormStore((state) => state.resetForm);
 
@@ -35,7 +35,7 @@ export default function BorrowingCreateContainer() {
   };
 
   return (
-    <Create
+    <BaseCreatePage
       title={t('borrowing.titles.create', 'Create New Borrowing')}
       saveButtonProps={{
         style: { display: 'none' },
@@ -43,6 +43,6 @@ export default function BorrowingCreateContainer() {
       goBack={<div />}
     >
       <MultiStepBorrowingForm isLoading={form.formLoading} onFinish={handleFormSubmit} />
-    </Create>
+    </BaseCreatePage>
   );
 }

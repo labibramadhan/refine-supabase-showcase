@@ -1,5 +1,5 @@
 import { Form, Input, Select, Row, Col } from 'antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import type { FormProps } from 'antd';
 import { useGenreSelect } from '@modules/genre/hooks/useGenreSelect';
 
@@ -8,7 +8,7 @@ export type BookFormProps = {
 };
 
 export default function BookForm({ formProps }: BookFormProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const { selectProps: genreSelectProps } = useGenreSelect({});
 

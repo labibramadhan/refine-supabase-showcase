@@ -1,4 +1,4 @@
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { Table, TableProps, Space } from 'antd';
 import { Genre } from '@models/genre';
 import { EditButton, DeleteButton } from '@refinedev/antd';
@@ -8,7 +8,7 @@ export type GenreListTableComponentProps = {
 };
 
 export function GenreListTableComponent({ tableProps }: GenreListTableComponentProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const columns: TableProps<Genre>['columns'] = [
     {

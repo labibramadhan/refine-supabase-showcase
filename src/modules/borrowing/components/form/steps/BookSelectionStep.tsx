@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { Card, Input, Select, Button, Row, Col, Radio, Typography, Alert, Table, Form } from 'antd';
 import { SearchOutlined, CheckCircleFilled, UndoOutlined } from '@ant-design/icons';
 import { useTable } from '@refinedev/antd';
@@ -12,7 +12,7 @@ const { Title, Text } = Typography;
 const { Option } = Select;
 
 export const BookSelectionStep: React.FC = () => {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const { selectedBookId, setSelectedBookId, errors } = useBorrowingFormStore();
 
   const { selectProps: genreSelectProps } = useGenreSelect({});

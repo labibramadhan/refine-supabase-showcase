@@ -1,6 +1,6 @@
 import MemberForm from '@modules/member/components/form/MemberForm';
 import { useMemberForm } from '@modules/member/hooks/useMemberForm';
-import { Create } from '@refinedev/antd';
+import BaseCreatePage from '@components/base-pages/create/BaseCreatePage';
 
 export default function MemberCreateContainer() {
   const { form } = useMemberForm({
@@ -10,8 +10,8 @@ export default function MemberCreateContainer() {
   });
 
   return (
-    <Create saveButtonProps={form.saveButtonProps}>
+    <BaseCreatePage saveButtonProps={form.saveButtonProps}>
       <MemberForm formProps={form.formProps} />
-    </Create>
+    </BaseCreatePage>
   );
 }

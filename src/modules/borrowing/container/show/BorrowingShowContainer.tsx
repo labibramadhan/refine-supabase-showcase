@@ -1,23 +1,22 @@
-import { Show } from '@refinedev/antd';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { useParams } from 'next/navigation';
 import BorrowingShowComponent from '@modules/borrowing/components/show/BorrowingShowComponent';
 import { useBorrowingShow } from '@modules/borrowing/hooks/useBorrowingShow';
+import BaseShowPage from '@components/base-pages/show/BaseShowPage';
 
 export default function BorrowingShowContainer() {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const params = useParams();
   const id = params?.id as string;
   const { data, isLoading } = useBorrowingShow(id);
 
   return (
-    <Show
+    <BaseShowPage
       isLoading={isLoading}
       title={t('borrowing.titles.show', 'Borrowing Details')}
       canEdit
-      resource="borrowings"
     >
       <BorrowingShowComponent record={data?.data} />
-    </Show>
+    </BaseShowPage>
   );
 }

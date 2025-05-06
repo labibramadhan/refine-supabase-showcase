@@ -1,20 +1,20 @@
-import { useTranslation } from '@refinedev/core';
-import { Create } from '@refinedev/antd';
+import BaseCreatePage from '@components/base-pages/create/BaseCreatePage';
 import { useGenreForm } from '@modules/genre/hooks/useGenreForm';
 import GenreForm from '@modules/genre/components/form/GenreForm';
+import { useTranslate } from '@refinedev/core';
 
 export default function GenreCreateContainer() {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const form = useGenreForm({});
 
   return (
-    <Create
+    <BaseCreatePage
       saveButtonProps={form.saveButtonProps}
       title={t('genre.create.title', 'Create Genre')}
       resource="genres"
     >
       <GenreForm formProps={form.formProps} />
-    </Create>
+    </BaseCreatePage>
   );
 }

@@ -1,11 +1,11 @@
 import MemberForm from '@modules/member/components/form/MemberForm';
 import { useMemberForm } from '@modules/member/hooks/useMemberForm';
-import { Edit } from '@refinedev/antd';
-import { useTranslation } from '@refinedev/core';
+import BaseEditPage from '@components/base-pages/edit/BaseEditPage';
+import { useTranslate } from '@refinedev/core';
 import { useParams } from 'next/navigation';
 
 export default function MemberEditContainer() {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const params = useParams();
   const id = params?.id as string;
   const { form } = useMemberForm({
@@ -16,12 +16,12 @@ export default function MemberEditContainer() {
   });
 
   return (
-    <Edit
+    <BaseEditPage
       isLoading={form.formLoading}
       saveButtonProps={form.saveButtonProps}
       title={t('member.titles.edit', 'Edit Member')}
     >
       <MemberForm formProps={form.formProps} />
-    </Edit>
+    </BaseEditPage>
   );
 }

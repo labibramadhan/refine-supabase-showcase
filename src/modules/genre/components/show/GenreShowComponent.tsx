@@ -1,4 +1,4 @@
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { Card, Typography, Descriptions, Divider } from 'antd';
 import { Genre } from '@models/genre';
 import { formatDate } from '@utils/format';
@@ -11,7 +11,7 @@ export type GenreShowComponentProps = {
 };
 
 export function GenreShowComponent({ record, isLoading }: GenreShowComponentProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   return (
     <div>

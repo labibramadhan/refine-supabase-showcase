@@ -1,4 +1,4 @@
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { Table, TableProps, Space, Tag } from 'antd';
 import { Borrowing } from '@models/borrowing';
 import { EditButton, ShowButton, DeleteButton } from '@refinedev/antd';
@@ -13,7 +13,7 @@ interface BorrowingListTableComponentProps {
 export default function BorrowingListTableComponent({
   tableProps,
 }: BorrowingListTableComponentProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const getStatusBadge = (status?: string) => {
     if (!status) return null;

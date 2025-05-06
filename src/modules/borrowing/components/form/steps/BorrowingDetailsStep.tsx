@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation, useList } from '@refinedev/core';
+import { useTranslate, useList } from '@refinedev/core';
 import { Form, DatePicker, Select, Input, Card } from 'antd';
 import { useBorrowingFormStore } from '@modules/borrowing/stores/useBorrowingFormStore';
 import { Member } from '@models/member';
@@ -11,7 +11,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 export const BorrowingDetailsStep: React.FC = () => {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const {
     memberId,
     borrowDate,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { Card, Steps, Button } from 'antd';
 import {
   BookOutlined,
@@ -22,7 +22,7 @@ export const MultiStepBorrowingForm: React.FC<MultiStepBorrowingFormProps> = ({
   isLoading,
   onFinish,
 }) => {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
   const { currentStep, nextStep, prevStep, getFormData } = useBorrowingFormStore();
 
   const steps = [

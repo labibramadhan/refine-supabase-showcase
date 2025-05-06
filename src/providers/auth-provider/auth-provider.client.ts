@@ -2,8 +2,11 @@
 
 import type { AuthProvider } from '@refinedev/core';
 import { supabaseBrowserClient } from '@utils/supabase/client';
+import { jwtDecode } from 'jwt-decode';
 
-export const authProviderClient: AuthProvider = {
+export const authProviderClient: AuthProvider & {
+  getJwtPayload: () => any;
+} = {
   login: async ({ email, password }) => {
     const { data, error } = await supabaseBrowserClient.auth.signInWithPassword({
       email,
@@ -111,22 +114,36 @@ export const authProviderClient: AuthProvider = {
     };
   },
   getPermissions: async () => {
-    const user = await supabaseBrowserClient.auth.getUser();
+    const jwt = await authProviderClient.getJwtPayload();
 
-    if (user) {
-      return user.data.user?.role;
+    return jwt.permissions;
+  },
+  getJwtPayload: async () => {
+    const { data } = await supabaseBrowserClient.auth.getSession();
+    if (!data?.session) {
+      return {};
+    }
+    const jwt: any = jwtDecode(data.session?.access_token!);
+    if (!jwt) {
+      return {};
     }
 
-    return null;
+    return jwt;
   },
   getIdentity: async () => {
     const { data } = await supabaseBrowserClient.auth.getUser();
 
     if (data?.user) {
-      return {
+      const jwt = await authProviderClient.getJwtPayload();
+
+      const identity = {
         ...data.user,
         name: data.user.email,
+        customer: jwt?.customers?.[0],
+        vendor: jwt?.vendors?.[0],
       };
+
+      return identity;
     }
 
     return null;

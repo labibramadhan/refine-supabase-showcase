@@ -1,4 +1,4 @@
-import { useTranslation } from '@refinedev/core';
+import { useTranslate } from '@refinedev/core';
 import { Form, Select, Button, Card, Row, Col } from 'antd';
 import { SearchOutlined, UndoOutlined } from '@ant-design/icons';
 import { useMemberSelect } from '@modules/member/hooks/useMemberSelect';
@@ -15,7 +15,7 @@ export default function BorrowingListFilterComponent({
   isResetButtonDisabled,
   isSearchButtonDisabled,
 }: BorrowingListFilterProps) {
-  const { translate: t } = useTranslation();
+  const t = useTranslate();
 
   const { selectProps: bookSelectProps } = useBookSelect({});
 
